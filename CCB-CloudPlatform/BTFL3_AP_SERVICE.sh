@@ -9,7 +9,7 @@ DEPLOY_UNION="BTFL3_AP"                #部署单元
 EDITER_MAIL="wuji.zh@ccb.com"          #编写人邮箱
 ###########################################################
 CONF_FILE=/home/ap/blockchain/supervisor/supervisord.conf
-APP_NAMES=${2}
+APP_NAMES=$2
 : ${APP_NAMES:=all}
 if [ "$1" == "start" ];then
     echo "-------------------------------------------------------------------------------------------------"
