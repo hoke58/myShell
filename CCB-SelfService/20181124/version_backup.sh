@@ -6,8 +6,8 @@
 # 时  间： 20181025                                       #
 # 单  元：  BTFL3_AP、BTFWB                               #
 ###########################################################
-BACK_PATH=/home/ap/blockchain/app-pkg/_backup
-APP_PATH=/home/ap/blockchain
+BACK_PATH=$HOME/app-pkg/_backup
+APP_PATH=$HOME
 WORK_PATH=$APP_PATH/$1
 : ${WORK_PATH:=$APP_PATH}
 case $1 in
