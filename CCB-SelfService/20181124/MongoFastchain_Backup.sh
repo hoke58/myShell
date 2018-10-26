@@ -9,7 +9,7 @@ DEPLOY_UNION="BTFO3"                   #部署单元
 EDITER_MAIL="wuji.zh@ccb.com"          #编写人邮箱
 ###########################################################
 v_process=`ps -ef|grep -i mongod|grep -v "grep"|awk '{print $2}'`
-BACK_PATH=/home/ap/blockchain/app-pkg/_backup
+BACK_PATH=$HOME/app-pkg/_backup
 if [ "$1" == "backup" ];then
     echo "----------------------------------------------------------------------"
     if [ -z ${v_process} ];then

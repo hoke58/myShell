@@ -6,7 +6,7 @@
 # 时  间： 20181025                                       #
 # 单  元：  BTFL3_AP、BTFWB_                              #
 ###########################################################
-BASH_PATH=/home/ap/blockchain/bin/usr
+BASH_PATH=$HOME/bin/usr
 APP_NAMES=$1
 if [ ! $APP_NAMES ];then
     bash ${BASH_PATH}/BTF*.sh stop
