@@ -9,7 +9,7 @@ DEPLOY_UNION="BTFN7"                #部署单元
 EDITER_MAIL="wuji.zh@ccb.com"   #编写人邮箱
 ###########################################################
 v_process=`ps -ef|grep -i mongos|grep -v "grep"|awk '{print $2}'`
-MONGOS_CFG_PATH=/home/ap/blockchain/mongodb/conf/sharding-mongos.conf
+MONGOS_CFG_PATH=$HOME/mongodb/conf/sharding-mongos.conf
 
 if [ "$1" == "start" ];then
         echo "----------------------------------------------------------------------"

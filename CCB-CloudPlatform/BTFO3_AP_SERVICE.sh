@@ -9,7 +9,7 @@ DEPLOY_UNION="BTFO3"                #部署单元
 EDITER_MAIL="wuji.zh@ccb.com"   #编写人邮箱
 ###########################################################
 v_process=`ps -ef|grep -i mongod|grep -v "grep"|awk '{print $2}'`
-MONGO_REPLICA_CFG_PATH=/home/ap/blockchain/mongodb/conf/replica.conf
+MONGO_REPLICA_CFG_PATH=$HOME/mongodb/conf/replica.conf
 PRIMARY_NODE=`mongo --port 27010 --authenticationDatabase=admin --quiet --eval 'rs.isMaster().ismaster'`
 SECONDARY=`mongo --port 27010 --username=root --password=ccb@#Hope123 --authenticationDatabase=admin --eval 'rs.status().members[1].health'|awk 'NR==4 {print $0}'`
 

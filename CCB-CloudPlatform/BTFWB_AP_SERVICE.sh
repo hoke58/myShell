@@ -8,10 +8,9 @@ MODIFIED_TIME="20180519"               #修改时间
 DEPLOY_UNION="BTFWB_AP"                #部署单元
 EDITER_MAIL="wuji.zh@ccb.com"   #编写人邮箱
 ###########################################################
-BASE_PATH="/home/ap/blockchain"
-v_pid_file="${BASE_PATH}/nginx/logs/nginx.pid"
-NGINX_PROG="${BASE_PATH}/nginx/sbin/nginx"
-NGINX_CONF_FILE="${BASE_PATH}/nginx/conf/nginx.conf"
+v_pid_file="$HOME/nginx/logs/nginx.pid"
+NGINX_PROG="$HOME/nginx/sbin/nginx"
+NGINX_CONF_FILE="$HOME/nginx/conf/nginx.conf"
 
 if [ "$1" == "start" ];then
     echo "----------------------------------------------------------------------"

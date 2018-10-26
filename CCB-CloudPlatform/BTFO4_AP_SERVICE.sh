@@ -9,7 +9,7 @@ DEPLOY_UNION="BTFO4_AP"                #部署单元
 EDITER_MAIL="wuji.zh@ccb.com"          #编写人邮箱
 ###########################################################
 APP_USER=blockchain
-CACHE_EXE_DIR=/home/ap/blockchain/hazelcast/bin
+CACHE_EXE_DIR=$HOME/hazelcast/bin
 PID_FILE=$CACHE_EXE_DIR/hazelcast_instance.pid
 
 para1=$1

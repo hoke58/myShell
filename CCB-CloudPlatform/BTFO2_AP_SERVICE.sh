@@ -8,7 +8,7 @@ MODIFIED_TIME="20181013"               #修改时间
 DEPLOY_UNION="BTFO2_AP"                #部署单元
 EDITER_MAIL="wuji.zh@ccb.com"          #编写人邮箱
 ###########################################################
-CONF_FILE=/home/ap/blockchain/supervisor/supervisord.conf
+CONF_FILE=$HOME/supervisor/supervisord.conf
 APP_NAMES=$2
 : ${APP_NAMES:=all}
 if [ "$1" == "start" ];then

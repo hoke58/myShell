@@ -10,7 +10,7 @@ EDITER_MAIL="wuji.zh@ccb.com"   #编写人邮箱
 ###########################################################
 v_process=`ps -ef|grep -i haproxy.pid|grep -v "grep"|awk '{print $2}'`
 HAPROXY_CFG_PATH=/etc/haproxy/haproxy.cfg
-HAPROXY_PID_PATH=/home/ap/haproxy/haproxy/haproxy.pid
+HAPROXY_PID_PATH=$HOME/haproxy/haproxy.pid
 
 if [ "$1" == "start" ];then
 	echo "----------------------------------------------------------------------"
