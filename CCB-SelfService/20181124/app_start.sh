@@ -11,11 +11,11 @@ DEPLOY_UNIT=$1
 
 verifyResult() {
 if [ $1 -ne 0 ]; then
-    echo "================== ERROR:[`hostname`][`date +%Y-%m-%d-%H:%M:%S`]"$2"启动失败 =================="
+    echo "================== ERROR:[`hostname`][`date +%Y-%m-%d_%H:%M:%S`]"$2"启动失败 =================="
     echo
     exit 1
 else
-    echo "================== INFO:[`hostname`][`date +%Y-%m-%d-%H:%M:%S`]"$2"启动成功 =================="
+    echo "================== INFO:[`hostname`][`date +%Y-%m-%d_%H:%M:%S`]"$2"启动成功 =================="
     exit 0
 fi
 }
