@@ -1,28 +1,45 @@
 #!/bin/sh
 ######################脚本注释#############################
 # 文件名： greenlight.sh[绿灯测试]                        #
-# 功  能： 绿灯检测                                       #
+# 功  能： 绿灯检测Nginx及应用                            #
 # 作  者： hoke                                           #
 # 时  间： 20181025                                       #
-# 单  元： BTFWB                                          #
+# 单  元： BTFX1_WB                                       #
+# 备  注： 运行绿灯脚本前确保[BTFX1_WB]能解析产品域名     #
 ###########################################################
-URL=("domlc.blockchain.ccb.com" "forfaiting.blockchain.ccb.com" "factor.blockchain.ccb.com")
-for url in ${URL[@]}
-do
-    curl -s http://${url}/api/systemVersion? --connect-timeout 1|awk -F'[""]' '{print $4}' >> ${url}.txt
-    state= curl -s http://${url}/api/systemVersion? --connect-timeout 1|awk -F'[""]' '{print $4}'
-    state=$(cat ${url}.txt)
-#    echo ${state[0]}
-    if [[ ${state} == "" ]];then
-#    if [[ ! -n "${state[0]}" ]];then
+URL_LIST="domlc forfaiting factoring"
+
+verifyResult() {
+if [ $res -ne 0 ]; then
+    echo "================== ERROR:[`hostname`][`date +%Y-%m-%d_%H:%M:%S`]"$2" is failed =================="
+    echo
+    exit 1
+else
+    echo "================== INFO:[`hostname`][`date +%Y-%m-%d_%H:%M:%S`]"$2" is successful =================="
+    exit 0
+fi
+}
+
+for URL in $URL_LIST; do
+    TMP_FILE="${URL}.$$"
+#    echo $TMP_FILE
+    echo "Starting ["$URL"] greenlight test..."
+    curl -s http://$URL.blockchain.ccb.com:8080/api/systemVersion? --connect-timeout 1|awk -F'[""]' '{print $4}' >> ${TMP_FILE}
+    echo "Get ["$URL"] Java version..."
+    state=`cat $TMP_FILE`
+    echo "The ["$URL"] Java version: ["$state"]"
+    if [ "$state" = "" ];then
         echo "----------------------------------------------------------------------"
-        echo "WARNING: ${url}绿灯测试不可访问!"
+        echo "ERROR:[`hostname`][`date +%Y-%m-%d_%H:%M:%S`]Failed to get the [${URL}] Java version"
         echo "----------------------------------------------------------------------"
-        exit 1
+        rm ${TMP_FILE}
+        res=1
     else
         echo "----------------------------------------------------------------------"
-        echo "INFO: ${url}绿灯测试可访问!"
+        echo "INFO:[`hostname`][`date +%Y-%m-%d_%H:%M:%S`]The "$URL" Java version is ["$state"]"
+        echo "----------------------------------------------------------------------"
+        rm ${TMP_FILE}
+        res=0
     fi
 done
-echo "2----------------------------------------------------------------------"
-exit 0
+verifyResult $res "Greenlight"
