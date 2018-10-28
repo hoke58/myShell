@@ -37,5 +37,5 @@ for URL in $URL_LIST; do
         echo "----------------------------------------------------------------------"
     fi
 done
-echo $run_code
+#echo $run_code
 verifyResult $run_code "Greenlight"

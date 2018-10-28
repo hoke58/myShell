@@ -49,5 +49,5 @@ for URL in $URL_LIST; do
         green_check
     fi
 done
-echo $run_code
+#echo $run_code
 exit $run_code
