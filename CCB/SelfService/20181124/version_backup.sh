@@ -5,9 +5,6 @@
 # 作  者： hoke                                           #
 # 时  间： 20181025                                       #
 # 单  元： ALL                                            #
-# 数据库： 文件存储服务只能在Mongo-routers[BTFN7_AP]的第  #
-#          1台[by18btfn7ap1001]执行，Oracle只能在         #
-#          [BTFL1_AP]的第1台[by18btfl1ap1001]执行         #
 ###########################################################
 BACK_PATH=$HOME/app-pkg/_backup
 DEPLOY_UNIT=$1
@@ -39,34 +36,10 @@ for i in $Archived_LIST; do
 done
 }
 
-Monggo_Cert(){
-echo "-------------------------------------------------------------------------------------------------"
-echo "WARN:[`hostname`][`date +%Y-%m-%d_%H:%M:%S`]文件存储服备份请在[BTFN7_AP]的第1台[by18btfn7ap1001]上执行!"
-echo "-------------------------------------------------------------------------------------------------"
-exit 1
-}
-
 Temp(){
 echo "-------------------------------------------------------------------------------------------------"
 echo "INFO:未在变更范围或无需备份"
 echo "-------------------------------------------------------------------------------------------------"
-}
-
-Oracle(){
-#sqlplus bcrh/bcrh#2014@11.161.173.67:1521/btfljpd0
-Oruser=bcrh
-Orpass=bcrh#2014
-Orsid=11.161.173.67:1521/btfljpd0
-exp $Oruser/$Orpass@$Orsid grants=y owner=$Oruser file=$BACK_PATH/BC_OracleBak_$DATETIME.dmp log=$BACK_PATH/BC_OracleBak_$DATETIME.log
-tar zcvf $BACK_PATH/BC_OracleBak_$DATETIME.tgz -C $BACK_PATH BC_OracleBak_$DATETIME.dmp
-if [ -f "$BACK_PATH/BC_OracleBak_$DATETIME.tgz" ]; then
-    echo "================== INFO:[`hostname`][`date +%Y-%m-%d_%H:%M:%S`]Oracle备份成功 =================="
-    echo
-    exit 0
-else
-    echo "================== ERROR:[`hostname`][`date +%Y-%m-%d_%H:%M:%S`]Oracle备份失败 =================="
-    exit 1
-fi
 }
 
 if [ ! $DEPLOY_UNIT ];then
@@ -104,28 +77,32 @@ else
         ;;
         BTFN5_AP|BTFN5|btfn5)
         # "Mong-shard1"
-        Monggo_Cert
+        Temp
+        res=$?
+        verifyResult $res "Mong-shard1"
         ;;
         BTFN6_AP|BTFN6|btfn6)
         # "Mongo-config"
-        Monggo_Cert
+        Temp
+        res=$?
+        verifyResult $res "Mongo-config"
         ;;
         BTFN7_AP|BTFN7|btfn7)
-        if [ "$hostname" = "by18btfn7ap1001" ]; then
-            sh ./MongoCert_Backup.sh backup
-            res=$?
-            verifyResult $res "Mongo-router"
-        else
-            Monggo_Cert
-        fi
+        Temp
+        res=$?
+        verifyResult $res "Mongo-router"
         ;;
         BTFN8_AP|BTFN8|btfn8)
         # "Mongo-shard2"
-        Monggo_Cert
+        Temp
+        res=$?
+        verifyResult $res "Mongo-shard2"
         ;;
         BTFN9_AP|BTFN9|btfn9)
         # "Mongo-shard3"
-        Monggo_Cert
+        Temp
+        res=$?
+        verifyResult $res "Mongo-shard3"
         ;;
         BTFO1_AP|BTFO1|btfo1)
         Temp
@@ -168,16 +145,6 @@ else
         Temp
         res=$?
         verifyResult $res "内网HAPROXY"
-        ;;
-        ORACLE|oralce)
-        if [ "$hostname" = "by18btfl1ap1001" ]; then
-            Oracle
-        else
-            echo "-------------------------------------------------------------------------------------------------"
-            echo "WARN:[`hostname`][`date +%Y-%m-%d_%H:%M:%S`]Oracle请在[BTFL1_AP]的第1台[by18btfl1ap1001]上执行!"
-            echo "-------------------------------------------------------------------------------------------------"
-            exit 1
-        fi
         ;;
         *)
         echo "-------------------------------------------------------------------------------------------------"

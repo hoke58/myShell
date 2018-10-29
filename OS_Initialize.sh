@@ -1,7 +1,7 @@
 #!/bin/bash
-####################################################
-#author by hoke
-#this script is only for Redhat&CentOS 7 by root
+cat << EOF
+# author by hoke
+# this script is only for Redhat&CentOS 7 by root
 # Redhat&CentOS 7 系统环境标准化
 # 字符集 - zh_CN.UTF-8
 # 修改时区同步时间 - Asia/Shanghai | 10.10.255.202
@@ -16,13 +16,14 @@
 # 标准化vim
 # 标准化全局变量
 # 优化内核
-#################################################
+EOF
 #标准化变量
 create_workdir="/opt"
 basesoft="gcc gcc-c++ ntp lrzsz tree telnet sysstat iptraf  python-devel openssl-devel zlib-devel nmap screen vim bind-utils git unzip man-pages-zh-CN.noarch wget net-tools"
-system_user="ops"
-user_id="2018"
-system_user_password="ops@2018"
+system_user="blockchain"
+user_id="1501"
+gid="1500"
+system_user_password="blockchain@2018"
 ssh_port="2222"
 ntp_server="10.10.255.202"
 public_key="ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAAgQDIh8JDs7aD3Fb65zAPx8XEcE4bN+PeFltxnB5zEL8x7m2Dq+ByhSCy6rJQFNkSDOcvzFP2zwZkH/gEHHGAbNJfzNU4Su4j5d/eRVD5nlXPpp8eegZgFlqVPNsWZDuy8gfwMhHevCF+0gwXJI0RRuJZuVExAe+fd3EptfcvK45TBw== hoke@Hoke-xps14"

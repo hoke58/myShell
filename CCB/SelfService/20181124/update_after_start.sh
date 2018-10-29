@@ -1,8 +1,8 @@
 #!/bin/bash 
 cat << EOF
 ######################脚本注释#############################
-# 文件名： BTFX1_WB_HOSTS.sh                              #
-# 功  能： 修改外网Haproxy的hosts[绿灯测试前置执行]       #
+# 文件名： update_after_start.sh                          #
+# 功  能： 增加外网Haproxy的hosts条目                     #
 # 作  者： hoke                                           #
 # 时  间： 20181025                                       #
 # 单  元： BTFX1_WB                                       #

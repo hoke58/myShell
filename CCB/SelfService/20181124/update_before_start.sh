@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 ######################脚本注释#############################
 # 文件名： update_before_start.sh[应用启动前]             #
 # 功  能： rabbitmq设置mirror策略                         #
