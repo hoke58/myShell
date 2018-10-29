@@ -6,5 +6,5 @@
 ### CCB
   - [CloudPlatform](CCB/CloudPlatform)（云平台）
   
-  - SelfService（自服务）
+  - [SelfService](CCB/SelfService)（自服务）
   
