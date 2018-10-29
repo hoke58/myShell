@@ -1,6 +1,6 @@
 #!/bin/bash
 ######################脚本注释#############################
-# 文件名： update_after_start.sh                          #
+# 文件名： update_before_dist.sh[版本发布前-执行脚本]     #
 # 功  能： MongoDB备份, Oracle备份                        #
 # 作  者： hoke                                           #
 # 时  间： 20181025                                       #
