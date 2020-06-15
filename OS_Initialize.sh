@@ -19,7 +19,8 @@ cat << EOF
 EOF
 #标准化变量
 create_workdir="/opt"
-basesoft="gcc gcc-c++ ntp lrzsz tree telnet sysstat iptraf  python-devel openssl-devel zlib-devel nmap screen vim bind-utils git unzip man-pages-zh-CN.noarch wget net-tools"
+basesoft="gcc gcc-c++ ntp lrzsz tree telnet sysstat iptraf  python-devel openssl-devel zlib-devel nmap screen vim bind-utils git unzip man-pages-zh-CN.noarch wget net-tools lsof nmap"
+# yum install lrzsz --downloadonly --downloaddir=./
 system_user="blockchain"
 user_id="1501"
 gid="1500"
